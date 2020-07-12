@@ -1,0 +1,13 @@
+?map
+-Post a map where u can see the cities
+
+Make the embed colour go with tier
+
+?patch
+-show patch notes
+
+?author
+-show bot author and small info
+
+?recipe ~item~
+-show the crafting recipe for the item
