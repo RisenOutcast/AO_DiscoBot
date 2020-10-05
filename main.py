@@ -87,7 +87,7 @@ async def on_message(message):
         with open("prefixes.json", 'r') as f:
             prefixes = json.load(f)
         id = str(message.guild.id)
-        await message.channel.send(":fleur_de_lis:  Hello there! I'm **Tetrao** and I am a entertainment bot! :fleur_de_lis: \n \nMy features include \n**|** Games ``!myphas`` \n**|** Music ``!join`` \n**|** Memes ``!meme`` \n**|** Over 60+ Soundtriggers \n**|** Leveling system and more! \nfor all commands type ``!help`` \n \nAdmins you can change the prefix with ``!changeprefix ~newprefix~``! \nCurrent prefix for this server is `{}` \n \nI'm constantly getting more updates and features \n \nFor news, announcements and if you have suggestions visit my home server at https://discord.gg/KAtQJJs \n \nHave a great time! \n:fencer:".format(prefixes[id]))
+        await message.channel.send("Current prefix for this server is `{}`".format(prefixes[id]))
 
     await client.process_commands(message)
 
