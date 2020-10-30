@@ -92,26 +92,6 @@ async def on_message(message):
     await client.process_commands(message)
 
 
-#@client.command(pass_context=True)
-#async def role(ctx, rooli):
-    #user = ctx.message.author
-    #if ctx.message.guild.id == '523422493151592458' or '444946819492085760':
-        #if rooli not in ctx.message.author.roles:
-            #if rooli in Appointable:
-                #role = discord.utils.get(ctx.guild.roles, name=rooli)
-                #if role in user.roles:
-                    #await ctx.message.author.remove_roles(role)
-                    #await ctx.send('Role **{}** has been removed from you!'.format(rooli))
-                #else:
-                    #await ctx.message.author.add_roles(role)
-                    #await ctx.send('You now have **{}** as a role'.format(rooli))
-            #else:
-                #await ctx.send("Role isn't self appointable or doesn't exist!")
-        #else:
-            #await ctx.send("Role doesn't exist")
-    #else:
-        #await ctx.send('Command not configured for this server.')
-
 @client.command(pass_context=True, aliases=['Help'])
 async def help(ctx):
     embed = discord.Embed(
@@ -120,6 +100,7 @@ async def help(ctx):
     embed.set_author(name='Commandlist ({}~commandname~)'.format(prefix))
     embed.add_field(name='Gold', value='See the current price of 1 gold', inline=False)
     embed.add_field(name='Price ~item~', value='Items value in different cities', inline=False)
+    embed.add_field(name='Status', value='Check current server status', inline=False)
     await ctx.send(embed=embed)
 
 

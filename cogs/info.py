@@ -11,19 +11,31 @@ class info(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(pass_context=True,aliases=['Player'])
-    async def status(self ,ctx, *, player : str = None):
+    @commands.command(pass_context=True)
+    async def status(self ,ctx):
 
-        print('Searching for player ' + str(player))
         await ctx.trigger_typing()
+        URL = "http://serverstatus.albiononline.com/"
+        a = requests.get(url = URL, timeout=30)
+        a.encoding = "utf-8"
+        a = a.text
+        a = a.replace('\n', ' ').replace("\r", '').replace('\ufeff', '')
+        data = json.loads(a) #{ "status": "online", "message": "All good." }
+        #try:
+        #except:
+            #await ctx.send("Server connection timeout, there's propably a maintenance.")
+        if data['status'] == 'offline':
+            embed = discord.Embed(
+            colour = discord.Colour.red(),
+            )
+        else:
+            embed = discord.Embed(
+            colour = discord.Colour.green(),
+            )
 
-        try:
-            URL = "http://live.albiononline.com/status.txt"
-            a = requests.get(url = URL)
-            data = a.json() #{ "status": "online", "message": "All good." }
-            ctx.send('')
-        except:
-            ctx.send("Server connection timeout, there's propably a maintenance.")
+        embed.add_field(name='Status: {}'.format(data['status']), value=data['message'], inline=False)
+        await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(info(client))
